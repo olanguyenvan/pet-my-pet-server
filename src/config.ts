@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 
 export interface Config {
-  port: number;
+  port: number | string | undefined;
   jwtSecret: string;
   database: {
     type: string;
@@ -34,7 +34,7 @@ const localConfig: Config = {
 };
 
 const productionConfig: Config = {
-  port: 80,
+  port: process.env.PORT,
   jwtSecret: '3D72F6182D9215DFB96C216331661A5E72FA13FD0620E6C5D8261EDF369FD3AB',
   database: {
     type: 'postgres',
