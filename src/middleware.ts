@@ -8,15 +8,12 @@ export const authMiddleware = (server: GraphQLServer) => (req: Request, err: Res
   if (!bearer && typeof bearer !== 'string') {
     return next();
   } 
-
   const token = bearer.split('Bearer')[1];
-
   if (!token) {
     return next();
   }
 
   const trimmedToken = token.trim();
-
   try {
     const decoded = jwt.verify(trimmedToken, config.jwtSecret);
 
@@ -25,6 +22,7 @@ export const authMiddleware = (server: GraphQLServer) => (req: Request, err: Res
     } else {
       const { user } = decoded as any;
       server.context.user = user;
+      return next();
     }
   } catch (e) {
     return next();
