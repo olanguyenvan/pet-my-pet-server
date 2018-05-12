@@ -10,7 +10,7 @@ export class HostOffer {
   id: number;
   
   @ManyToOne(type => User)
-  author: User;
+  author: Promise<User>;
 
   @Column()
   start: string;
@@ -19,12 +19,12 @@ export class HostOffer {
   end: string;
   
   @OneToOne(type => AppLocation)
-  location: AppLocation;
+  location: Promise<AppLocation>;
 
   @OneToMany(type => Reservation, reservation => reservation.hostOffer)
-  reservations: Reservation[];
+  reservations: Promise<Reservation[]>;
 
   @ManyToMany(type => PetBrand, petBrand => petBrand.hostOffers)
   @JoinTable()
-  petBrands: PetBrand[];
+  petBrands: Promise<PetBrand[]>;
 }

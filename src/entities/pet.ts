@@ -12,11 +12,11 @@ export class Pet {
   name: string;
 
   @ManyToOne(type => PetBrand)
-  brand: PetBrand;
+  brand: Promise<PetBrand>;
 
   @ManyToOne(type => User)
-  owner: User;
+  owner: Promise<User>;
 
   @ManyToMany(type => CareRequest, careRequest => careRequest.pets)
-  careRequests: CareRequest[];
+  careRequests: Promise<CareRequest[]>;
 }

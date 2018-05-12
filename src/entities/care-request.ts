@@ -9,7 +9,7 @@ export class CareRequest {
   id: number;
   
   @ManyToOne(type => User)
-  author: User;
+  author: Promise<User>;
   
   @Column()
   start: string;
@@ -19,8 +19,8 @@ export class CareRequest {
 
   @ManyToMany(type => Pet, pet => pet.careRequests)
   @JoinTable()
-  pets: Pet[];
+  pets: Promise<Pet[]>;
 
   @OneToOne(type => Reservation)
-  reservation: Reservation;
+  reservation: Promise<Reservation>;
 }

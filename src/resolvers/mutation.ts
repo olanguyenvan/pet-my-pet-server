@@ -9,6 +9,7 @@ import { HostOffer } from "../entities/host-offer";
 import { CareRequest } from "../entities/care-request";
 import { PetBrand } from "../entities/pet-brand";
 import { Pet } from "../entities/pet";
+import { AppLocation } from "../entities/app-location";
 
 export const Mutation: MutationType = {
   login: async (_, { email, password }, { jwtSecret, dbConnection }) => {
@@ -48,12 +49,11 @@ export const Mutation: MutationType = {
       throw new Error('Email is already used!');
     }
 
-    const newUser = dbConnection.getRepository(User).create({
-      firstname,
-      lastname,
-      email,
-      password: bcrypt.hashSync(password, 10)
-    });
+    const newUser = new User();
+    newUser.firstname = firstname;
+    newUser.lastname = lastname;
+    newUser.email = email;
+    newUser.password = bcrypt.hashSync(password, 10);
 
     return dbConnection.getRepository(User).save(newUser);
   },
@@ -78,12 +78,11 @@ export const Mutation: MutationType = {
       throw new Error('Dont rate yourself!');
     }
 
-    const newReview = dbConnection.getRepository(Review).create({
-      author,
-      target,
-      score,
-      message
-    });
+    const newReview = new Review();
+    newReview.author = Promise.resolve(author);
+    newReview.target = Promise.resolve(target);
+    newReview.score = score;
+    newReview.message = message;
 
     return dbConnection.getRepository(Review).save(newReview);
   },
@@ -101,12 +100,9 @@ export const Mutation: MutationType = {
       const careRequest = await dbConnection.getRepository(CareRequest).createQueryBuilder().where('id = :id', { careRequestId }).getOne();
       const hostOffer = await dbConnection.getRepository(HostOffer).createQueryBuilder().where('id = :id', { hostOfferId }).getOne();
 
-      const newReservation = dbConnection.getRepository(Reservation).create({
-        careRequest,
-        hostOffer
-      });
-  
-      console.log('NewR: ', newReservation);
+      const newReservation = new Reservation();
+      newReservation.careRequest = Promise.resolve(careRequest) as Promise<CareRequest>;
+      newReservation.hostOffer = Promise.resolve(hostOffer) as Promise<HostOffer>;
       
       return dbConnection.getRepository(Reservation).save(newReservation);
     },
@@ -122,14 +118,12 @@ export const Mutation: MutationType = {
         }
     
         const brand = await dbConnection.getRepository(PetBrand).createQueryBuilder().where('id = :brandId', { brandId }).getOne();
-        const newPet = dbConnection.getRepository(Pet).create({
-          brand,
-          name,
-          owner
-        });
+
+        const newPet = new Pet();
+        newPet.name = name;
+        newPet.brand = Promise.resolve(brand) as Promise<PetBrand>;
+        newPet.owner = Promise.resolve(owner) as Promise<User>;
     
-        console.log('NewP: ', newPet);
-        
         return dbConnection.getRepository(Pet).save(newPet);
       },
 
@@ -143,9 +137,8 @@ export const Mutation: MutationType = {
             throw new Error('You are not logged in!');      
           }
       
-          const newPetBrand = dbConnection.getRepository(PetBrand).create({
-            name
-          });
+          const newPetBrand = new PetBrand();
+          newPetBrand.name = name;
       
           return dbConnection.getRepository(PetBrand).save(newPetBrand);
         },
@@ -159,12 +152,10 @@ export const Mutation: MutationType = {
               throw new Error('You are not logged in!');      
             }
         
-            const newCareRequest = dbConnection.getRepository(CareRequest).create({
-              start,
-              end,
-              pets,
-              author
-            });
+            const newCareRequest = new CareRequest();
+            newCareRequest.start = start;
+            newCareRequest.end = end;
+            newCareRequest.author = Promise.resolve(author);
         
             return dbConnection.getRepository(CareRequest).save(newCareRequest);
           },
@@ -178,15 +169,12 @@ export const Mutation: MutationType = {
                 throw new Error('You are not logged in!');      
               }
           
-              const newHostOffer = dbConnection.getRepository(HostOffer).create({
-                start,
-                end,
-                author,
-                location,
-                petBrands
-              });
+              const newHostOffer = new HostOffer();
+              newHostOffer.start = start;
+              newHostOffer.end = end;
+              newHostOffer.author = Promise.resolve(author);
+              newHostOffer.location = Promise.resolve(location) as Promise<AppLocation>;
           
               return dbConnection.getRepository(HostOffer).save(newHostOffer);
             }
-          
 };

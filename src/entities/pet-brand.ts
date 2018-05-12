@@ -11,8 +11,8 @@ export class PetBrand {
   name: string;
 
   @OneToMany(type => Pet, pet => pet.brand)
-  pets: Pet[];
+  pets: Promise<Pet[]>;
 
   @ManyToMany(type => HostOffer, hostOffer => hostOffer.petBrands)
-  hostOffers: HostOffer[];
+  hostOffers: Promise<HostOffer[]>;
 }

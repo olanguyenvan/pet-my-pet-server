@@ -13,8 +13,8 @@ export class Review {
   message: string;
   
   @ManyToOne(type => User)
-  author: User;
+  author: Promise<User>;
 
   @ManyToOne(type => User)
-  target: User;
+  target: Promise<User>;
 }

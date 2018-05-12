@@ -23,17 +23,17 @@ export class User {
 
   @OneToMany(type => Pet, pet => pet.owner)
   @JoinColumn()
-  pets: Pet[];
+  pets: Promise<Pet[]>;
   
   @OneToMany(type => HostOffer, hostOffer => hostOffer.author)
   @JoinColumn()
-  hostOffers: HostOffer[];
+  hostOffers: Promise<HostOffer[]>;
 
   @OneToMany(type => CareRequest, careRequest => careRequest.author)
   @JoinColumn()
-  careRequests: CareRequest[];
+  careRequests: Promise<CareRequest[]>;
 
   @OneToMany(type => Review, review => review.author)
   @JoinColumn()
-  reviews: Review[];
+  reviews: Promise<Review[]>;
 }

@@ -8,8 +8,8 @@ export class Reservation {
   id: number;
   
   @OneToOne(type => CareRequest)
-  careRequest: CareRequest;
+  careRequest: Promise<CareRequest>;
 
   @OneToOne(type => HostOffer)
-  hostOffer: HostOffer;
+  hostOffer: Promise<HostOffer>;
 }
