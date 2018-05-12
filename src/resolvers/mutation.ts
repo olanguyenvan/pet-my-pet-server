@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export const Mutation: MutationType = {
   login: async (_, { email, password }, { jwtSecret }) => {
-    const user = { name: 'xD', password: bcrypt.hashSync('xD', 10) };
+    const user = { email: 'xD', password: bcrypt.hashSync('xD', 10) };
 
     if (!user) {
       throw new Error('There is not user with that email');
