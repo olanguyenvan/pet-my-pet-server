@@ -38,6 +38,12 @@ export interface UserType extends ResolverObject {
   reviews: ResolverFn<User, {}, Review[]>;
 }
 
-export interface UserSearchInput extends IdHolder {
+export interface InputUser {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
 
+export interface UserSearchInput extends IdHolder {
 }
