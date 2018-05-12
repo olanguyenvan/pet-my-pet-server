@@ -1,0 +1,28 @@
+{
+  "name": "pet-my-pet-server",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "license": "MIT",
+  "scripts": {
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check",
+    "serve": "node ./build/app.js"
+  },
+  "dependencies": {
+    "@types/ws": "^5.1.1",
+    "dataloader": "^1.4.0",
+    "graphql-import": "^0.5.2",
+    "graphql-tag": "^2.9.2",
+    "merge-graphql-schemas-ts": "^1.1.4",
+    "ramda": "^0.25.0",
+    "typeorm": "^0.2.5",
+    "graphql-yoga": "^1.13.1",
+    "gts": "^0.6.0",
+    "typescript": "^2.8.3"
+  }
+}
