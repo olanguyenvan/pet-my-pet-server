@@ -13,4 +13,4 @@ export declare type ResolverObject = {
 export type ResolverFn<Source, Args, Return> = 
   (source: Source, args: Args, context: Context, info: GraphQLResolveInfo & {
   mergeInfo: MergeInfo;
-}) => Return; 
+}) => Return | Promise<Return>; 

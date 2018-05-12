@@ -1,4 +1,6 @@
 import gql from 'graphql-tag';
+import { Basic } from './basic';
+import { ResolverObject, ResolverFn } from '../types';
 
 export const query = gql`
   type Query {
@@ -6,6 +8,6 @@ export const query = gql`
   }
 `;
 
-export interface HelloArgs {
-  name: String;
+export interface QueryType extends ResolverObject {
+  hello: ResolverFn<any, {name: string}, Basic>;
 }
