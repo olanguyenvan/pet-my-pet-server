@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { User } from "./user";
+import { AppLocation } from "./app-location";
 
 @Entity()
 export class HostOffer {
@@ -15,6 +16,6 @@ export class HostOffer {
   @Column()
   end: Date;
   
-  @OneToOne(type => Location)
-  location: Location;
+  @OneToOne(type => AppLocation)
+  location: AppLocation;
 }

@@ -7,6 +7,14 @@ import { authMiddleware } from './middleware';
 import { config } from './config';
 import "reflect-metadata";
 import { createConnection, ConnectionOptions } from 'typeorm';
+import { CareRequest } from './entities/care-request';
+import { HostOffer } from './entities/host-offer';
+import { PetType } from './entities/pet-type';
+import { Pet } from './entities/pet';
+import { Reservation } from './entities/reservation';
+import { Review } from './entities/review';
+import { User } from './entities/user';
+import { AppLocation } from './entities/app-location';
 
 const run = async () => {
   const { database } = config;
@@ -14,7 +22,14 @@ const run = async () => {
   const dbConnection = await createConnection({
     ...database,
     entities: [
-
+      AppLocation,
+      CareRequest,
+      HostOffer,
+      PetType,
+      Pet,
+      Reservation,
+      Review,
+      User
     ]
   } as ConnectionOptions);
 
@@ -32,6 +47,7 @@ const run = async () => {
   server.use(authMiddleware(server));
   
   server.start({
+    port: config.port,
     cors: {
       origin: '*'
     }

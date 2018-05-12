@@ -11,7 +11,8 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check",
-    "serve": "node ./build/app.js"
+    "serve": "node ./build/app.js",
+    "serve:prod": "yarn compile && NODE_ENV=production node ./build/app.js"
   },
   "dependencies": {
     "@types/bcrypt": "^2.0.0",
@@ -20,7 +21,6 @@
     "@types/ws": "^5.1.1",
     "bcrypt": "^2.0.1",
     "dataloader": "^1.4.0",
-    "global": "^4.3.2",
     "graphql-import": "^0.5.2",
     "graphql-tag": "^2.9.2",
     "graphql-yoga": "^1.13.1",
