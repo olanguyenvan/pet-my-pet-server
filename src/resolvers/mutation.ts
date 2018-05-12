@@ -156,6 +156,7 @@ export const Mutation: MutationType = {
             newCareRequest.start = start;
             newCareRequest.end = end;
             newCareRequest.author = Promise.resolve(author);
+            newCareRequest.pets = dbConnection.getRepository(Pet).createQueryBuilder().whereInIds(pets).getMany();
         
             return dbConnection.getRepository(CareRequest).save(newCareRequest);
           },
@@ -174,6 +175,7 @@ export const Mutation: MutationType = {
               newHostOffer.end = end;
               newHostOffer.author = Promise.resolve(author);
               newHostOffer.location = Promise.resolve(location) as Promise<AppLocation>;
+              newHostOffer.petBrands = dbConnection.getRepository(PetBrand).createQueryBuilder().whereInIds(petBrands).getMany();
           
               return dbConnection.getRepository(HostOffer).save(newHostOffer);
             }
