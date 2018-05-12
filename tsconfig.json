@@ -1,9 +1,12 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "lib": [
       "es5",
       "es6",
+      "es7",
       "dom",
       "es2015.core",
       "es2015.collection",
@@ -17,7 +20,8 @@
       "esnext.asynciterable"
     ],
     "rootDir": "src",
-    "outDir": "build"
+    "outDir": "build",
+    "strictPropertyInitialization": false    
   },
   "include": [
     "src/*.ts",
