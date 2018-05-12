@@ -14,6 +14,7 @@ export class HostOffer {
 
   @Column()
   end: Date;
-
   
+  @OneToOne(type => Location)
+  location: Location;
 }

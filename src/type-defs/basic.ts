@@ -7,5 +7,5 @@ export const basic = gql`
 `;
 
 export interface Basic {
-  name: String;
+  name: string;
 }

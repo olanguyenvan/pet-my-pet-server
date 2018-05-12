@@ -5,6 +5,12 @@ import { User } from "./user";
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  score: number;
+
+  @Column()
+  message: string;
   
   @OneToOne(type => User)
   author: User;

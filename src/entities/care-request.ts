@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinTable, ManyToMany } from "typeorm";
 import { User } from "./user";
+import { Pet } from "./pet";
 
 @Entity()
 export class CareRequest {
@@ -15,5 +16,7 @@ export class CareRequest {
   @Column()
   end: Date;
 
-
+  @ManyToMany(type => Pet, pet => pet.careRequests)
+  @JoinTable()
+  pets: Pet[];
 }
