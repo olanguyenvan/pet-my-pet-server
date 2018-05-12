@@ -1,4 +1,6 @@
+import { User } from "./entities/user";
+
 export interface Context {
-  user: any;
+  user: User | null;
   jwtSecret: string;
 }

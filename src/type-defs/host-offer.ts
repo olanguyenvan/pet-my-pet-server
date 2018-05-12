@@ -1,25 +1,25 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { UserType } from './user';
-import { AppLocationType } from './app-location';
-import { PetTypeType } from './pet-type';
+import { HostOffer } from '../entities/host-offer';
+import { User } from '../entities/user';
+import { AppLocation } from '../entities/app-location';
+import { PetBrand } from '../entities/pet-brand';
 
 export const hostOffer = gql`
   type HostOffer {
-    id: ID
-    author: User
+    id: ID!
+    author: User!
     start: String
     end: String
-    location: AppLocation
-    types: [PetType]
+    location: AppLocation!
+    petBrands: [PetBrand]!
   }
 
   input InputHostOffer {
-    author: User
     start: String
     end: String
-    location: AppLocation
-    types: [Int]
+    location: AppLocation!
+    petBrands: [Int]
   }
 
   input HostOfferSearchInput {
@@ -28,10 +28,7 @@ export const hostOffer = gql`
 `;
 
 export interface HostOfferType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  author: ResolverFn<any, {}, UserType>;
-  start: ResolverFn<any, {}, string>;
-  end: ResolverFn<any, {}, string>;
-  location: ResolverFn<any, {}, AppLocationType>;
-  type: ResolverFn<any, {}, [PetTypeType]>;
+  author: ResolverFn<HostOffer, {}, User>;
+  location: ResolverFn<HostOffer, {}, AppLocation>;
+  petBrands: ResolverFn<HostOffer, {}, PetBrand[]>;
 }

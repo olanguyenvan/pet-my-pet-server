@@ -9,12 +9,12 @@ import "reflect-metadata";
 import { createConnection, ConnectionOptions } from 'typeorm';
 import { CareRequest } from './entities/care-request';
 import { HostOffer } from './entities/host-offer';
-import { PetType } from './entities/pet-type';
 import { Pet } from './entities/pet';
 import { Reservation } from './entities/reservation';
 import { Review } from './entities/review';
 import { User } from './entities/user';
 import { AppLocation } from './entities/app-location';
+import { PetBrand } from './resolvers/pet-brand';
 
 const run = async () => {
   const { database } = config;
@@ -25,7 +25,7 @@ const run = async () => {
       AppLocation,
       CareRequest,
       HostOffer,
-      PetType,
+      PetBrand,
       Pet,
       Reservation,
       Review,

@@ -1,21 +1,21 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { UserType } from './user';
+import { CareRequest } from '../entities/care-request';
+import { User } from '../entities/user';
 
 export const careRequest = gql`
   type CareRequest {
-    id: ID
-    author: User
-    start: String
-    end: String
+    id: ID!
+    author: User!
+    start: String!
+    end: String!
     pets: [Pet]
   }
 
   input InputCareRequest {
-    author: User
     start: String
     end: String
-    pets: [Integer]
+    pets: [Integer]!
   }
 
   input CareRequestSearchInput {
@@ -24,9 +24,5 @@ export const careRequest = gql`
 `;
 
 export interface CareRequestType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  author: ResolverFn<any, {}, UserType>;
-  start: ResolverFn<any, {}, string>;
-  end: ResolverFn<any, {}, string>;
-  
+  author: ResolverFn<CareRequest, {}, User>;
 }

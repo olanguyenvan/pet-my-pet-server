@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { UserType } from './user';
+import { Review } from '../entities/review';
+import { User } from '../entities/user';
 
 export const review = gql`
   type Review {
@@ -12,7 +13,8 @@ export const review = gql`
   }
 
   input InputReview {
-    score: Int
+    targetId: Int!
+    score: Int!
     message: String
   }
 
@@ -22,10 +24,6 @@ export const review = gql`
 `;
 
 export interface ReviewType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  score: ResolverFn<any, {}, number>;
-  message: ResolverFn<any, {}, string>;
-  author: ResolverFn<any, {}, UserType>;
-  target: ResolverFn<any, {}, UserType>;
-  
+  author: ResolverFn<Review, {}, User>;
+  target: ResolverFn<Review, {}, User>;
 }

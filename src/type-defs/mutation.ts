@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 import { ResolverObject, ResolverFn } from "../types";
-import { UserType } from "./user";
 
 export const mutation = gql`
   type Mutation {

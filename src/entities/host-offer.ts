@@ -1,6 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { User } from "./user";
 import { AppLocation } from "./app-location";
+import { Reservation } from "./reservation";
+import { PetBrand } from "./pet-brand";
 
 @Entity()
 export class HostOffer {
@@ -18,4 +20,11 @@ export class HostOffer {
   
   @OneToOne(type => AppLocation)
   location: AppLocation;
+
+  @OneToMany(type => Reservation, reservation => reservation.hostOffer)
+  reservations: Reservation[];
+
+  @ManyToMany(type => PetBrand, petBrand => petBrand.hostOffers)
+  @JoinTable()
+  petBrands: PetBrand[];
 }

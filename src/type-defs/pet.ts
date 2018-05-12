@@ -1,18 +1,18 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { UserType } from './user';
-import { PetTypeType } from './pet-type';
+import { Pet } from '../entities/pet';
+import { PetBrand } from '../entities/pet-brand';
 
 export const pet = gql`
   type Pet {
     id: ID
     name: String
-    type: PetType
+    brand: PetBrand
   }
 
   input InputPet {
-    name: String
-    type: Int
+    name: String!
+    brandId: Int!
   }
 
   input PetSearchInput {
@@ -21,7 +21,5 @@ export const pet = gql`
 `;
 
 export interface PetType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  name: ResolverFn<any, {}, string>;
-  type: ResolverFn<any, {}, PetTypeType>;
+  brand: ResolverFn<Pet, {}, PetBrand>;
 }

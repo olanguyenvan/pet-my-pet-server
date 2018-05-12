@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { UserType } from './user';
-import { HostOfferType } from './host-offer';
-import { CareRequestType } from './care-request';
+import { Reservation } from '../entities/reservation';
+import { CareRequest } from '../entities/care-request';
+import { HostOffer } from '../entities/host-offer';
 
 export const reservation = gql`
   type Reservation {
@@ -22,7 +22,6 @@ export const reservation = gql`
 `;
 
 export interface ReservationType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  careRequest: ResolverFn<any, {}, CareRequestType>;
-  hostOffer: ResolverFn<any, {}, HostOfferType>;
+  careRequest: ResolverFn<Reservation, {}, CareRequest>;
+  hostOffer: ResolverFn<Reservation, {}, HostOffer>;
 }

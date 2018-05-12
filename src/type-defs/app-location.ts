@@ -1,17 +1,16 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { ReviewType } from './review';
 
 export const appLocation = gql`
   type AppLocation {
-    id: ID
-    latitude: Float
-    longitude: Float
+    id: ID!
+    latitude: Float!
+    longitude: Float!
   }
 
   input InputAppLocation {
-    latitude: Float
-    longitude: Float
+    latitude: Float!
+    longitude: Float!
   }
 
   input AppLocationSearchInput {
@@ -20,7 +19,4 @@ export const appLocation = gql`
 `;
 
 export interface AppLocationType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  latitude: ResolverFn<any, {}, number>;
-  longitude: ResolverFn<any, {}, number>;
 }

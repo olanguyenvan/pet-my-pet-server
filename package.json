@@ -11,7 +11,7 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check",
-    "serve": "node ./build/app.js",
+    "serve": "yarn compile && NODE_ENV=development node ./build/app.js",
     "serve:prod": "yarn compile && NODE_ENV=production node ./build/app.js"
   },
   "dependencies": {

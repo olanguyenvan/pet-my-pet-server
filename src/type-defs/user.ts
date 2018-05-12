@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
-import { ReviewType } from './review';
-import { HostOfferType } from './host-offer';
-import { PetType } from './pet';
-import { CareRequestType } from './care-request';
+import { User } from '../entities/user';
+import { Pet } from '../entities/pet';
+import { HostOffer } from '../entities/host-offer';
+import { CareRequest } from '../entities/care-request';
+import { Review } from '../entities/review';
 
 export const user = gql`
   type User {
@@ -18,10 +19,10 @@ export const user = gql`
   }
 
   input InputUser {
-    firstname: String
-    lastname: String
-    email: String
-    password: String
+    firstname: String!
+    lastname: String!
+    email: String!
+    password: String!
   }
 
   input UserSearchInput {
@@ -30,13 +31,8 @@ export const user = gql`
 `;
 
 export interface UserType extends ResolverObject {
-  id: ResolverFn<any, {}, number>;
-  firstname: ResolverFn<any, {}, string>;
-  lastname: ResolverFn<any, {}, string>;
-  email: ResolverFn<any, {}, string>;
-  pets: ResolverFn<any, {}, PetType[]>;
-  hostOffers: ResolverFn<any, {}, HostOfferType[]>;
-  careRequest: ResolverFn<any, {}, CareRequestType[]>;
-  reviews: ResolverFn<any, {}, ReviewType[]>;
-  
+  pets: ResolverFn<User, {}, Pet[]>;
+  hostOffers: ResolverFn<User, {}, HostOffer[]>;
+  careRequest: ResolverFn<User, {}, CareRequest[]>;
+  reviews: ResolverFn<User, {}, Review[]>;
 }
