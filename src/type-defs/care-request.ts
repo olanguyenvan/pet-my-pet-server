@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
 import { CareRequest } from '../entities/care-request';
 import { User } from '../entities/user';
+import { IdHolder } from './interfaces/id-holder';
 
 export const careRequest = gql`
   type CareRequest {
@@ -15,7 +16,7 @@ export const careRequest = gql`
   input InputCareRequest {
     start: String
     end: String
-    pets: [Integer]!
+    pets: [Int]!
   }
 
   input CareRequestSearchInput {
@@ -25,4 +26,8 @@ export const careRequest = gql`
 
 export interface CareRequestType extends ResolverObject {
   author: ResolverFn<CareRequest, {}, User>;
+}
+
+export interface CareRequestSearchInput extends IdHolder {
+
 }

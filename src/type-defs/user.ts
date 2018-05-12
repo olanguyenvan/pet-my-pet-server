@@ -5,6 +5,7 @@ import { Pet } from '../entities/pet';
 import { HostOffer } from '../entities/host-offer';
 import { CareRequest } from '../entities/care-request';
 import { Review } from '../entities/review';
+import { IdHolder } from './interfaces/id-holder';
 
 export const user = gql`
   type User {
@@ -33,6 +34,10 @@ export const user = gql`
 export interface UserType extends ResolverObject {
   pets: ResolverFn<User, {}, Pet[]>;
   hostOffers: ResolverFn<User, {}, HostOffer[]>;
-  careRequest: ResolverFn<User, {}, CareRequest[]>;
+  careRequests: ResolverFn<User, {}, CareRequest[]>;
   reviews: ResolverFn<User, {}, Review[]>;
+}
+
+export interface UserSearchInput extends IdHolder {
+
 }

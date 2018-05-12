@@ -3,6 +3,7 @@ import { ResolverObject, ResolverFn } from '../types';
 import { Reservation } from '../entities/reservation';
 import { CareRequest } from '../entities/care-request';
 import { HostOffer } from '../entities/host-offer';
+import { IdHolder } from './interfaces/id-holder';
 
 export const reservation = gql`
   type Reservation {
@@ -24,4 +25,8 @@ export const reservation = gql`
 export interface ReservationType extends ResolverObject {
   careRequest: ResolverFn<Reservation, {}, CareRequest>;
   hostOffer: ResolverFn<Reservation, {}, HostOffer>;
+}
+
+export interface ReservationSearchInput extends IdHolder {
+  
 }

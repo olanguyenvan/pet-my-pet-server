@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
 import { Review } from '../entities/review';
 import { User } from '../entities/user';
+import { IdHolder } from './interfaces/id-holder';
 
 export const review = gql`
   type Review {
@@ -26,4 +27,8 @@ export const review = gql`
 export interface ReviewType extends ResolverObject {
   author: ResolverFn<Review, {}, User>;
   target: ResolverFn<Review, {}, User>;
+}
+
+export interface ReviewSearchInput extends IdHolder {
+  
 }

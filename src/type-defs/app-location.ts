@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
+import { IdHolder } from './interfaces/id-holder';
 
 export const appLocation = gql`
   type AppLocation {
@@ -19,4 +20,8 @@ export const appLocation = gql`
 `;
 
 export interface AppLocationType extends ResolverObject {
+}
+
+export interface AppLocationSearchInput extends IdHolder {
+  
 }

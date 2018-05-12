@@ -4,6 +4,7 @@ import { HostOffer } from '../entities/host-offer';
 import { User } from '../entities/user';
 import { AppLocation } from '../entities/app-location';
 import { PetBrand } from '../entities/pet-brand';
+import { IdHolder } from './interfaces/id-holder';
 
 export const hostOffer = gql`
   type HostOffer {
@@ -18,7 +19,7 @@ export const hostOffer = gql`
   input InputHostOffer {
     start: String
     end: String
-    location: AppLocation!
+    location: InputAppLocation!
     petBrands: [Int]
   }
 
@@ -31,4 +32,8 @@ export interface HostOfferType extends ResolverObject {
   author: ResolverFn<HostOffer, {}, User>;
   location: ResolverFn<HostOffer, {}, AppLocation>;
   petBrands: ResolverFn<HostOffer, {}, PetBrand[]>;
+}
+
+export interface HostOfferSearchInput extends IdHolder {
+
 }

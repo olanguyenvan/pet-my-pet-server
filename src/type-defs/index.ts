@@ -9,18 +9,20 @@ import { review, ReviewType } from './review';
 import { hostOffer, HostOfferType } from './host-offer';
 import { careRequest, CareRequestType } from './care-request';
 import { PetBrandType, petBrand } from './pet-brand';
+import { appLocation } from './app-location';
 
 
 export const typeDefs = gql`
   ${query}
   ${mutation}
-  ${user}
-  ${pet}
+  ${appLocation}
+  ${careRequest}
+  ${hostOffer}
   ${petBrand}
+  ${pet}
   ${reservation}
   ${review}
-  ${hostOffer}
-  ${careRequest}
+  ${user}
 
   schema {
     query: Query

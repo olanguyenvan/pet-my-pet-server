@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { ResolverObject, ResolverFn } from '../types';
+import { IdHolder } from './interfaces/id-holder';
 
 export const petBrand = gql`
   type PetBrand {
@@ -13,4 +14,8 @@ export const petBrand = gql`
 `;
 
 export interface PetBrandType extends ResolverObject {
+}
+
+export interface PetBrandSearchInput extends IdHolder {
+  
 }

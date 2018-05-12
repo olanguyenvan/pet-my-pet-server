@@ -14,7 +14,7 @@ import { Reservation } from './entities/reservation';
 import { Review } from './entities/review';
 import { User } from './entities/user';
 import { AppLocation } from './entities/app-location';
-import { PetBrand } from './resolvers/pet-brand';
+import { PetBrand } from './entities/pet-brand';
 
 const run = async () => {
   const { database } = config;
@@ -38,7 +38,8 @@ const run = async () => {
     resolvers,
     context: {
       user: null,
-      jwtSecret: config.jwtSecret
+      jwtSecret: config.jwtSecret,
+      dbConnection
     } as Context,
   } as Props;
   
