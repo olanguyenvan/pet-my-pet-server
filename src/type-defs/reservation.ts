@@ -27,6 +27,11 @@ export interface ReservationType extends ResolverObject {
   hostOffer: ResolverFn<Reservation, {}, HostOffer>;
 }
 
+export interface InputReservation {
+  careRequestId: number;
+  hostOfferId: number;
+}
+
 export interface ReservationSearchInput extends IdHolder {
   
 }

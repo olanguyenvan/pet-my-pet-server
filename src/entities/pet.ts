@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToMany, ManyToOne } from "typeorm";
 import { User } from "./user";
 import { PetBrand } from "./pet-brand";
 import { CareRequest } from "./care-request";
@@ -11,10 +11,10 @@ export class Pet {
   @Column()
   name: string;
 
-  @OneToOne(type => PetBrand)
+  @ManyToOne(type => PetBrand)
   brand: PetBrand;
 
-  @OneToOne(type => User)
+  @ManyToOne(type => User)
   owner: User;
 
   @ManyToMany(type => CareRequest, careRequest => careRequest.pets)

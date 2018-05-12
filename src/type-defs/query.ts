@@ -29,14 +29,14 @@ export const query = gql`
 
 export interface QueryType extends ResolverObject {
   users: ResolverFn<any, {}, User[]>;
-  user: ResolverFn<any, UserSearchInput, User | undefined>;
+  user: ResolverFn<any, { userSearchInput: UserSearchInput }, User | undefined>;
 
   careRequests: ResolverFn<any, {}, CareRequest[]>;
-  careRequest: ResolverFn<any, CareRequestSearchInput, CareRequest | undefined>;
+  careRequest: ResolverFn<any, { careRequestSearchInput: CareRequestSearchInput }, CareRequest | undefined>;
 
   hostOffers: ResolverFn<any, {}, HostOffer[]>;
-  hostOffer: ResolverFn<any, HostOfferSearchInput, HostOffer | undefined>;
+  hostOffer: ResolverFn<any, { hostOfferSearchInput: HostOfferSearchInput }, HostOffer | undefined>;
 
   petBrands: ResolverFn<any, {}, PetBrand[]>;
-  petBrand: ResolverFn<any, PetBrandSearchInput, PetBrand | undefined>;
+  petBrand: ResolverFn<any, { petBrandSearchInput: PetBrandSearchInput }, PetBrand | undefined>;
 }

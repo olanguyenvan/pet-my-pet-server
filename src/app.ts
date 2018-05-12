@@ -37,7 +37,7 @@ const run = async () => {
     typeDefs,
     resolvers,
     context: {
-      user: null,
+      userId: null,
       jwtSecret: config.jwtSecret,
       dbConnection
     } as Context,

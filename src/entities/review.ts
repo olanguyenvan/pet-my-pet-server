@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne } from "typeorm";
 import { User } from "./user";
 
 @Entity()
@@ -12,9 +12,9 @@ export class Review {
   @Column()
   message: string;
   
-  @OneToOne(type => User)
+  @ManyToOne(type => User)
   author: User;
 
-  @OneToOne(type => User)
+  @ManyToOne(type => User)
   target: User;
 }

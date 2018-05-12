@@ -22,6 +22,11 @@ export const appLocation = gql`
 export interface AppLocationType extends ResolverObject {
 }
 
+export interface InputAppLocation {
+  latitude: number;
+  longitude: number;
+}
+
 export interface AppLocationSearchInput extends IdHolder {
   
 }

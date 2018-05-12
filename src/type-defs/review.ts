@@ -29,6 +29,12 @@ export interface ReviewType extends ResolverObject {
   target: ResolverFn<Review, {}, User>;
 }
 
+export interface InputReview {
+  targetId: number;
+  score: number;
+  message: string;
+}
+
 export interface ReviewSearchInput extends IdHolder {
   
 }

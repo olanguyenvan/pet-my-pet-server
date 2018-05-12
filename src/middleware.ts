@@ -20,8 +20,8 @@ export const authMiddleware = (server: GraphQLServer) => (req: Request, err: Res
     if (typeof decoded !== 'object') {
       throw new Error();
     } else {
-      const { user } = decoded as any;
-      server.context.user = user;
+      const { user: { id } } = decoded as any;
+      server.context.userId = id;
       return next();
     }
   } catch (e) {

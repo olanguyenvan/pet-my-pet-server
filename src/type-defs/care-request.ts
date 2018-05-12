@@ -28,6 +28,12 @@ export interface CareRequestType extends ResolverObject {
   author: ResolverFn<CareRequest, {}, User>;
 }
 
+export interface InputCareRequest {
+    start: string;
+    end: string;
+    pets: [number];
+}
+
 export interface CareRequestSearchInput extends IdHolder {
 
 }

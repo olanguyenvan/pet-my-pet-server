@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinTable, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinTable, ManyToMany, ManyToOne } from "typeorm";
 import { User } from "./user";
 import { Pet } from "./pet";
 import { Reservation } from "./reservation";
@@ -8,7 +8,7 @@ export class CareRequest {
   @PrimaryGeneratedColumn()
   id: number;
   
-  @OneToOne(type => User)
+  @ManyToOne(type => User)
   author: User;
   
   @Column()

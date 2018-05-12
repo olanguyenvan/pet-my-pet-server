@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
 import { HostOffer } from "./host-offer";
 import { Pet } from "./pet";
 
@@ -10,7 +10,7 @@ export class PetBrand {
   @Column()
   name: string;
 
-  @ManyToMany(type => Pet, pet => pet.brand)
+  @OneToMany(type => Pet, pet => pet.brand)
   pets: Pet[];
 
   @ManyToMany(type => HostOffer, hostOffer => hostOffer.petBrands)

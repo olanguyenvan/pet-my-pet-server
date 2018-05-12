@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToMany, JoinTable, ManyToOne } from "typeorm";
 import { User } from "./user";
 import { AppLocation } from "./app-location";
 import { Reservation } from "./reservation";
@@ -9,7 +9,7 @@ export class HostOffer {
   @PrimaryGeneratedColumn()
   id: number;
   
-  @OneToOne(type => User)
+  @ManyToOne(type => User)
   author: User;
 
   @Column()
