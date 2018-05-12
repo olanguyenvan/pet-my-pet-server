@@ -13,10 +13,10 @@ export class HostOffer {
   author: User;
 
   @Column()
-  start: Date;
+  start: string;
 
   @Column()
-  end: Date;
+  end: string;
   
   @OneToOne(type => AppLocation)
   location: AppLocation;

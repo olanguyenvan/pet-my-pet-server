@@ -12,10 +12,10 @@ export class CareRequest {
   author: User;
   
   @Column()
-  start: Date;
+  start: string;
 
   @Column()
-  end: Date;
+  end: string;
 
   @ManyToMany(type => Pet, pet => pet.careRequests)
   @JoinTable()

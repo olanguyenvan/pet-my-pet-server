@@ -36,7 +36,7 @@ export interface MutationType extends ResolverObject {
   createReservation: ResolverFn<any, {reservation: InputReservation}, Reservation>;
   createPet: ResolverFn<any, {pet: InputPet}, Pet>;
   createPetBrand: ResolverFn<any, {petBrand: InputPetBrand}, PetBrand>;
-  // createHostOffer: ResolverFn<any, {hostOffer: InputHostOffer}, HostOffer>;
-  // createCareRequest: ResolverFn<any, {careRequest: InputCareRequest}, CareRequest>;
+  createHostOffer: ResolverFn<any, {hostOffer: InputHostOffer}, HostOffer>;
+  createCareRequest: ResolverFn<any, {careRequest: InputCareRequest}, CareRequest>;
   
 }

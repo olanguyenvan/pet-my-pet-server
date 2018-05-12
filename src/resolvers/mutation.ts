@@ -148,5 +148,45 @@ export const Mutation: MutationType = {
           });
       
           return dbConnection.getRepository(PetBrand).save(newPetBrand);
-        }
+        },
+        createCareRequest: async (_, 
+          { careRequest: { start, end, pets}},
+          { dbConnection, userId }) => {
+            
+            const author = await dbConnection.getRepository(User).createQueryBuilder().where('id = :userId', { userId }).getOne();
+        
+            if (!author) {
+              throw new Error('You are not logged in!');      
+            }
+        
+            const newCareRequest = dbConnection.getRepository(CareRequest).create({
+              start,
+              end,
+              pets,
+              author
+            });
+        
+            return dbConnection.getRepository(CareRequest).save(newCareRequest);
+          },
+          createHostOffer: async (_, 
+            { hostOffer: { start, end, location, petBrands }},
+            { dbConnection, userId }) => {
+              
+              const author = await dbConnection.getRepository(User).createQueryBuilder().where('id = :userId', { userId }).getOne();
+          
+              if (!author) {
+                throw new Error('You are not logged in!');      
+              }
+          
+              const newHostOffer = dbConnection.getRepository(HostOffer).create({
+                start,
+                end,
+                author,
+                location,
+                petBrands
+              });
+          
+              return dbConnection.getRepository(HostOffer).save(newHostOffer);
+            }
+          
 };
