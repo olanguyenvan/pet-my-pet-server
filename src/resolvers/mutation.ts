@@ -24,4 +24,24 @@ export const Mutation: MutationType = {
 
     return token;
   }
+  // ,
+  // register: async (_,
+  //   { user: { email, password, lastname, firstname, confirmPassword } },
+  //   {connector: { user }}) => {
+  //   const existingUser = await user.findOne({where: {email}})
+
+  //   if (existingUser) {
+  //     throw new Error('Email is already used!')
+  //   }
+
+  //   const values = {
+  //     firstname: firstname,
+  //     lastname: lastname,
+  //     email: email,
+  //     password: bcrypt.hashSync(password, 10)
+  //   }
+
+  //   return user.create(values)
+  // }
+
 };
